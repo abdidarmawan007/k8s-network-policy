@@ -1,7 +1,7 @@
 # GKE Dataplane v2 network policies 
 - GKE 1.21.x Dataplane v2
 
-### Restricting ingress traffic to the redis-cart only from the cartservice deployment with selector cartservice.
+#### Restricting ingress traffic to the redis-cart only from the cartservice deployment with selector cartservice.
 
 ```
 kind: NetworkPolicy
