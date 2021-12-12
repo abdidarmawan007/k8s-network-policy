@@ -2,7 +2,7 @@
 - GKE 1.21.x Dataplane v2
 
 #### Restricting ingress traffic to the redis-cart only from the cartservice deployment with selector cartservice.
-- really helps prevent unnecessary services from connecting to redis server and reduces tcp open connections on redis server
+- Really helps prevent unnecessary services connecting to redis server and reduces tcp open connections on redis server
 
 ```
 kind: NetworkPolicy
