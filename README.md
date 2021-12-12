@@ -6,8 +6,8 @@
 - No need Calico/Weave Net plugin
 
 ```
-kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
 metadata:
   namespace: production
   name: redis-cart-allow-from-cartservice
