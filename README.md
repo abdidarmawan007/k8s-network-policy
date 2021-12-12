@@ -1,4 +1,4 @@
-# Kubernetes Network Policies
+# GKE Dataplane v2 network policies 
 - GKE 1.21.x Dataplane v2
 
 ### Restricting ingress traffic to the redis-cart Pod only from the cartservice Pods.
