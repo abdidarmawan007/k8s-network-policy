@@ -54,3 +54,6 @@ spec:
         - port: 80
 ```
 
+#### Allow traffic egress with FQDN domain (cillium)
+![alt text](https://i.imgur.com/IjYZvuR.png)
+
