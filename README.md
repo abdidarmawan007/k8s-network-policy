@@ -23,7 +23,7 @@ spec:
           app: cartservice
 ```
 
-#### More complex nerworkpolicy, only allow egress port 443 and 80 
+#### More complex networkpolicy, only allow traffic egress port 443 and 80 
 ![alt text](https://i.imgur.com/ndzyOtx.png)
 ```
 apiVersion: networking.k8s.io/v1
