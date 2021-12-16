@@ -1,0 +1,58 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: production-network-policy
+  namespace: production
+spec:
+  endpointSelector: {}
+  egress:
+    - toEntities:
+        - cluster
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEndpoints:
+        - {}
+    - toFQDNs:
+        - matchPattern: "*.googleapis.com"
+      toPorts:
+        - ports:
+            - port: "443"
+        - ports:
+            - port: "80"
+    - toFQDNs:
+        - matchName: accounts.google.com
+      toPorts:
+        - ports:
+            - port: "443"
+        - ports:
+            - port: "80"
+    - toFQDNs:
+        - matchName: api.moengage.com
+      toPorts:
+        - ports:
+            - port: "443"
+        - ports:
+            - port: "80"
+    - toFQDNs:
+        - matchName: api.xendit.co
+      toPorts:
+        - ports:
+            - port: "443"
+        - ports:
+            - port: "80"
+    - toFQDNs:
+        - matchName: metadata.google.internal
+      toPorts:
+        - ports:
+            - port: "443"
+        - ports:
+            - port: "80"
