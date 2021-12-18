@@ -1,3 +1,4 @@
+# fqdn only support for native cillium
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
