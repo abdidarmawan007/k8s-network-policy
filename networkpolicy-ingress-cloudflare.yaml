@@ -1,4 +1,4 @@
-## allow ingress incoming traffic from ip cloudlfare, prevent bypass traffic to k8s ingress public ip 
+## allow ingress incoming traffic from ip cloudlfare for namespace production, prevent bypass traffic to k8s ingress public ip 
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
