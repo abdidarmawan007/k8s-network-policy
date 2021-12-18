@@ -1,0 +1,138 @@
+## allow ingress incoming traffic from ip cloudlfare, prevent bypass traffic to k8s ingress public ip 
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: production-network-policy
+  namespace: production
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector: {}
+    - from:
+        - namespaceSelector: {}
+    # allow gcp nat ip public
+    - from:
+        - ipBlock:
+            cidr: 216.239.38.128/32
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 216.239.38.132/32
+      ports:
+        - port: 443
+        - port: 80    
+    # allow cloudflare ip public, https://www.cloudflare.com/ips-v4    
+    - from:
+        - ipBlock:
+            cidr: 173.245.48.0/20
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 103.21.244.0/22
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 103.22.200.0/22
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 103.31.4.0/22
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 141.101.64.0/18
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 108.162.192.0/18
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 190.93.240.0/20
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 188.114.96.0/20
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 197.234.240.0/22
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 198.41.128.0/17
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 162.158.0.0/15
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 104.16.0.0/13
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 104.24.0.0/14
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 172.64.0.0/13
+      ports:
+        - port: 443
+        - port: 80
+    - from:
+        - ipBlock:
+            cidr: 131.0.72.0/22
+      ports:
+        - port: 443
+        - port: 80
+  egress:
+    - to:
+        - namespaceSelector: {}
+    - to:
+        - namespaceSelector: {}
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - port: 53
+          protocol: UDP
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      # allow engress outgoing traffic only port 443 and 80      
+      ports:
+        - port: 443
+        - port: 80
