@@ -132,7 +132,10 @@ spec:
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
-      # allow engress outgoing traffic only port 443 and 80      
+      # allow engress outgoing traffic only port 443,80, redis port etc     
       ports:
         - port: 443
         - port: 80
+        - port: 6379
+        - port: 3306
+        - port: 5432
