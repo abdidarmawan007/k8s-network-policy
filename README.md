@@ -57,4 +57,4 @@ spec:
 #### Allow traffic egress with FQDN domain (Cillium)
 ![alt text](https://i.imgur.com/IjYZvuR.png)
 
-https://editor.cilium.io
+[cillium editor](https://editor.cilium.io)
